@@ -147,6 +147,7 @@ const Note = ({ setisLogin }) => {
         {/* <Route path='/edit/:id' exact element={<EditNote/>}  /> */}
 
       </Routes>
+      <div>{error}</div>
       <AddNote setNotelists={setNotelists}/>
       <section>
 

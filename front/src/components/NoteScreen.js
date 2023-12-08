@@ -47,7 +47,7 @@ const NoteScreen = ({setEnd}) => {
             }
         }
 
-        , [id, Loading])
+        , [id])
 
 
 
