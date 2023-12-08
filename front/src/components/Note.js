@@ -55,50 +55,54 @@ const Note = ({ setisLogin }) => {
 
   
   useEffect(
-    () => async () => {
-      try {
-        // console.log(loading)
-
-        const token = localStorage.getItem("token Store");
-
-        if (token) {
-          const isv = await axios.get(
-            "https://unimon-add-notes.onrender.com/route/user/userinfo",
-            {
-              headers: { Authorization: token },
-            },
-          ).then(
-            (isv)=>{
-              console.log(isv);
-              var data = isv.data.notes;
-              data.map(async (noteId) => {
-                const res = await axios.get(
-                  `https://unimon-add-notes.onrender.com/route/note/${noteId}`,
-                );
-                setNotelists(prevData => [...prevData, res.data])
-                console.log(res.data, " inside the map")
-
-                console.log(Notelists, " in maps of notes")
-              });
-              setLoading(false)
-              console.log(loading)
-              const entries = Object.keys(Notelists.at());
-              console.log(entries, "values in entries")
-              console.log(Notelists, " after useEffect call");
-            }
-          );
+    ()  => {
+      async function callApi(){
+        try {
+          // console.log(loading)
+  
+          const token = localStorage.getItem("token Store");
+  
+          if (token) {
+            const isv = await axios.get(
+              "https://unimon-add-notes.onrender.com/route/user/userinfo",
+              {
+                headers: { Authorization: token },
+              },
+            ).then(
+              (isv)=>{
+                console.log(isv);
+                var data = isv.data.notes;
+                data.map(async (noteId) => {
+                  const res = await axios.get(
+                    `https://unimon-add-notes.onrender.com/route/note/${noteId}`,
+                  );
+                  setNotelists(prevData => [...prevData, res.data])
+                  console.log(res.data, " inside the map")
+  
+                  console.log(Notelists, " in maps of notes")
+                });
+                setLoading(false)
+                console.log(loading)
+                const entries = Object.keys(Notelists.at());
+                console.log(entries, "values in entries")
+                console.log(Notelists, " after useEffect call");
+              }
+            );
+          }
+  
+          // console.log(details)
         }
-
-        // console.log(details)
-      }
-      catch (error) {
-        setError(error);
+        catch (error) {
+          setError(error);
+          
+          setLoading(false);
         
-        setLoading(false);
-      
-      }finally {
-        setLoading(false);
+        }finally {
+          setLoading(false);
+        }
       }
+
+      callApi();
     },
     [],
   );
