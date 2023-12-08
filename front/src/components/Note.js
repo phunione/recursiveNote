@@ -94,8 +94,6 @@ const Note = ({ setisLogin }) => {
           
           setLoading(false);
         
-        }finally {
-          setLoading(false);
         }
       }
 
