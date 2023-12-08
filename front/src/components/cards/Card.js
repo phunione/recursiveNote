@@ -72,7 +72,9 @@ const Card = ({ data, index, setdt,setEnd }) => {
     e.target.style.color = colors[index % 5].btnColor;
   }
 
-  const OnDelete = async e => {
+  const OnDelete = async (e) => {
+    var r = window.confirm("Are you sure you want to delete?")
+    if(r){
     try {
       e.preventDefault();
       console.log(state.parent)
@@ -132,7 +134,10 @@ const Card = ({ data, index, setdt,setEnd }) => {
     }
 
 
-
+}
+else{
+  return;
+}
   }
   function handleClick() {
     var myDiv = document.getElementById("cross");
