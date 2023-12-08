@@ -7,6 +7,7 @@ const Login = ({setisLogin}) => {
         username: '',
         password: '',
     })
+    const [loading,setLoading] = useState(false);
     const [err,setErr] = useState('');
 
     const onChangeInput  = e =>{
@@ -21,11 +22,14 @@ const Login = ({setisLogin}) => {
     const registerSubmit = async e =>{
         // e.preventDefault();
         try {
+            setLoading(true);
             let res = await axios.post('https://unimon-add-notes.onrender.com/route/user/register',{
                 username:user.username,
                 password : user.password
             })
             setErr(res.data.message)
+            setLoading(false);
+
             // loginSubmit()
             setuser({username:"", password: ""})
         } catch (error) {
@@ -37,10 +41,13 @@ const Login = ({setisLogin}) => {
     const loginSubmit = async e =>{
         // e.preventDefault();
         try {
+            setLoading(true);
+
             let res = await axios.post('https://unimon-add-notes.onrender.com/route/user/signin',{
                 username:user.username,
                 password : user.password
             })
+            setLoading(false);
             setuser({username:"", password: ""})
             console.log(res.data)
             localStorage.setItem("token Store" , res.data.token)
@@ -51,6 +58,7 @@ const Login = ({setisLogin}) => {
             
         }
     }
+    if(loading)return <>Loading....</>
     return (
         <>
         {/* <section>
