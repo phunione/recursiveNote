@@ -104,7 +104,7 @@ const Note = ({ setisLogin }) => {
 
       callApi();
     },
-    [],
+    [loading],
   );
 
   

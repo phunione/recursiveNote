@@ -59,9 +59,6 @@ const NoteScreen = ({setEnd}) => {
         myDiv.style.display = "flex";
     }
 
-    if (Loading) return (<div> Loading...
-        <AddNoteChild noteId={id} setdt={setdt} />
-    </div>)
     if (error !== null) return (<div>{error}
         <AddNoteChild noteId={id} setdt={setdt} />
     </div>
