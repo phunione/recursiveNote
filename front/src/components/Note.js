@@ -72,6 +72,7 @@ const Note = ({ setisLogin }) => {
               (isv)=>{
                 console.log(isv);
                 var data = isv.data.notes;
+                setNotelists([]);
                 data.map(async (noteId) => {
                   const res = await axios.get(
                     `https://unimon-add-notes.onrender.com/route/note/${noteId}`,
